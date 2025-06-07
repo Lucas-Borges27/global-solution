@@ -1,77 +1,73 @@
-# global-solution
+# Global Solution
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Visão Geral do Projeto
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+O Alerta360 é um serviço backend REST API construído com Quarkus e Java 21, projetado para gerenciar alertas, áreas de risco, ocorrências e usuários. O backend oferece um conjunto completo de endpoints CRUD para essas entidades, suportando operações de criação, recuperação, atualização, exclusão e autenticação de usuários (login/logout).
 
-## Running the application in dev mode
+A aplicação frontend está hospedada separadamente e disponível em [Frontend Alerta360](https://frontgs.vercel.app/).
 
-You can run your application in dev mode that enables live coding using:
+## Backend
 
-```shell script
+### Tecnologias Utilizadas
+
+- Java 21
+- Framework Quarkus
+- Jakarta RESTful Web Services (JAX-RS)
+- Hibernate ORM com Panache
+- Banco de Dados Oracle (via JDBC)
+- Maven para build e gerenciamento de dependências
+- JUnit 5 e Rest-Assured para testes
+
+### Funcionalidades
+
+- Endpoints REST para gerenciamento de:
+  - Alertas (`/alertas`)
+  - Áreas de Risco (`/areas-risco`)
+  - Ocorrências (`/ocorrencias`)
+  - Usuários (`/usuarios`)
+- Autenticação de usuários com endpoints de login e logout, utilizando cookies seguros HttpOnly para gerenciamento de sessão.
+- Operações CRUD completas para todas as entidades.
+- Requisições e respostas em formato JSON utilizando Jackson.
+
+### Resumo dos Endpoints REST
+
+| Recurso        | Métodos HTTP           | Descrição                      |
+|----------------|-----------------------|-------------------------------|
+| `/alertas`     | GET, POST, PUT, DELETE| Gerenciamento de alertas       |
+| `/areas-risco` | GET, POST, PUT, DELETE| Gerenciamento de áreas de risco|
+| `/ocorrencias` | GET, POST, PUT, DELETE| Gerenciamento de ocorrências   |
+| `/usuarios`    | GET, POST, PUT, DELETE| Gerenciamento de usuários      |
+| `/usuarios/cadastro`| POST | Cadastro de usuários          ||
+| `/usuarios/login`  | POST                | Autenticação de usuário (login)|
+| `/usuarios/logout` | POST                | Logout do usuário              |
+
+### Como Construir e Executar o Backend
+
+#### Pré-requisitos
+
+- Java 21 instalado
+- Maven instalado
+- Banco de dados Oracle configurado e acessível
+
+#### Execução com Maven
+
+```bash
+# Executar o projeto
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+## Frontend
 
-## Packaging and running the application
+O frontend da aplicação está hospedado no Vercel e pode ser acessado pelo link:
 
-The application can be packaged using:
+[https://frontgs.vercel.app/](https://frontgs.vercel.app/)
 
-```shell script
-./mvnw package
-```
+---
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## Desenvolvedores
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Este projeto foi desenvolvido por Yasmin Silva|560039, Lucas Borges|560027 e Pedro Silva|560393 como parte do desafio Global Solution da FIAP, focado na criação de soluções tecnológicas inovadoras para prevenção e apoio em situações de desastres naturais.
 
-If you want to build an _über-jar_, execute the following command:
+## Contato
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/global-solution-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- JDBC Driver - Oracle ([guide](https://quarkus.io/guides/datasource)): Connect to the Oracle database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+Para dúvidas ou contribuições, entre em contato com a equipe de desenvolvimento.
