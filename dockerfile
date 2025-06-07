@@ -7,14 +7,14 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the project and package the jar
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -Dquarkus.package.type=uber-jar -B
 
 # Use OpenJDK runtime image
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copy the jar from the build stage
-COPY --from=build /app/target/global-solution-dev.jar app.jar
+COPY --from=build /app/target/*-runner.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
